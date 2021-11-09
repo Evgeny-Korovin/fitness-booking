@@ -20,5 +20,5 @@
                         'phone' => $userPhone,
                         'email' => $userEmail,
                         'pass' => md5($userPass)]);
-        header('Location: get_users.php');
+        header('Location: ../get_users.php');
     }
