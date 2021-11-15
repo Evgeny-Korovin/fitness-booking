@@ -11,8 +11,8 @@ function printResult($result) {
                     <td>" . $row['phone'] . "</td>
                     <td>" . $row['special'] . "</td>
                     <td>
-                        <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] .  ">Редактировать</button>
                         <form action='components/delete_trainer.php' method='POST'>
+                            <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] .  ">Редактировать</button>
                             <input type='hidden' name='id' value="  . $row['id'] .  ">
                             <button type='submit' class=\"btn btn-danger btn-sm\">Удалить</button>
                         </form>
@@ -21,6 +21,7 @@ function printResult($result) {
         $i++;
     }
 }
+
 $querySelectAllTrainers = "SELECT * FROM trainers";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

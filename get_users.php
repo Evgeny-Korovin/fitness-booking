@@ -11,8 +11,8 @@
                     <td>" . $row['phone'] . "</td>
                     <td>" . $row['email'] . "</td>
                     <td>
-                        <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] . ">Редактировать</button>
                         <form action='components/delete_user.php' method='POST'>
+                            <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] . ">Редактировать</button>
                             <input type='hidden' name='id' value=" . $row['id'] .  ">
                             <button type='submit' class=\"btn btn-danger btn-sm\">Удалить</button>
                         </form>

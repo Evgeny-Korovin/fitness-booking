@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#" style="color: white;">Доступные зантия</a>
+                <a class="nav-link" href="get_planned_classes.php" style="color: white;">Доступные зантия</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="get_trainers.php" style="color: white;">Список тренеров</a>

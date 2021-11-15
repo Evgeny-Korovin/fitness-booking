@@ -1,5 +1,5 @@
 <?php
-    include('connect_db.php');
+    require 'connect_db.php';
 
     if (!empty($_POST)) {
         $userName = $_POST['name'];

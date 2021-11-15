@@ -11,8 +11,8 @@ function printResult($result) {
                     <td>" . $row['minusers'] . "</td>
                     <td>" . $row['maxusers'] . "</td>
                     <td>
-                        <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] .  ">Редактировать</button>
                         <form action='components/delete_class.php' method='POST'>
+                            <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] .  ">Редактировать</button>
                             <input type='hidden' name='id' value="  . $row['id'] .  ">
                             <button type='submit' class=\"btn btn-danger btn-sm\">Удалить</button>
                         </form>
@@ -21,14 +21,14 @@ function printResult($result) {
         $i++;
     }
 }
-$querySelectAllTrainers = "SELECT * FROM classes";
+$querySelectAllClasses = "SELECT * FROM classes";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 ];
 
 $pdo = new PDO($dsn, $user,$pass,$options);
-$stmt = $pdo->query($querySelectAllTrainers);
+$stmt = $pdo->query($querySelectAllClasses);
 ?>
 <div class="container">
     <h2 class="mt-3">Добавить тип занятия</h2>
