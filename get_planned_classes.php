@@ -26,8 +26,7 @@ function printResult($result) {
         echo "<tr>
                     <th scope=\"row\">$i</th>
                     <td>" . $row['title'] . "</td>
-                    <td>" . $row['name'] . "</td>
-                    <td>" . $row['surname'] . "</td>
+                    <td>" . $row['name'] . " " . $row['surname'] . "</td>
                     <td>" . $row['datetime'] . "</td>
                     <td>
                         <form action='components/delete_planned_class.php' method='POST'>
@@ -64,11 +63,11 @@ function printResult($result) {
                     <label class="mb-2" for="trainersId">Выберите тренера</label>
                     <?php echo get_trainers($stmtTrainers, 'trainersId'); ?>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <label class="mb-2" for="classesId">Выберите тип занятия</label>
                     <?php echo get_classes($stmtClasses, 'classesId'); ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="mb-2" for="datetimepicker">Выберите дату и время</label>
                     <input name="dtpicker" type="datetime-local" class="form-control" id="datetimepicker">
                 </div>
@@ -93,7 +92,7 @@ function printResult($result) {
             </thead>
             <tbody>
             <?php
-            printResult($stmtPlannedClasses);
+                printResult($stmtPlannedClasses);
             ?>
             </tbody>
         </table>
