@@ -34,6 +34,10 @@
         </ul>
 
     </div>
+        <form class="form-inline my-2 my-lg-0">
+            <span style="margin-right: 20px;color: white;font-weight: 500;"><?php echo $_COOKIE['name'] . " " . $_COOKIE['surname']; ?></span>
+            <a href="components/exit.php" class="btn btn-dark my-2 my-sm-0" type="submit">Выход</a>
+        </form>
     </div>
 </nav>
 
