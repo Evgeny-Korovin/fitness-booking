@@ -21,6 +21,23 @@ function get_classes($result, $selectId) {
 }
 
 function printResult($result) {
+
+    function get_ordered_users($row) {
+        require 'components/connect_db.php';
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ];
+        $queryOrderedUsers = "SELECT users.id, users.name, users.surname FROM users, classes_users WHERE users.id = classes_users.user_id AND classes_users.class_id = $row";
+        $pdo = new PDO($dsn, $user,$pass,$options);
+        $stmtOrderedUsers = $pdo->query($queryOrderedUsers);
+        $result = "";
+        while ($user = $stmtOrderedUsers->fetch()) {
+            $result .= $user['name'] . " " . $user['surname'] . "<br>";
+        }
+        return $result;
+    }
+
     $i = 1;
     while ($row = $result->fetch()) {
         echo "<tr>
@@ -28,6 +45,7 @@ function printResult($result) {
                     <td>" . $row['title'] . "</td>
                     <td>" . $row['name'] . " " . $row['surname'] . "</td>
                     <td>" . $row['datetime'] . "</td>
+                    <td>" . get_ordered_users($row['id']) . "</td>
                     <td>
                         <form action='components/delete_planned_class.php' method='POST'>
                             <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] .  ">Редактировать</button>
@@ -87,6 +105,7 @@ function printResult($result) {
                 <th scope="col">Название</th>
                 <th scope="col">Тренер</th>
                 <th scope="col">Дата и время</th>
+                <th scope="col">Записались</th>
                 <th scope="col">Действия</th>
             </tr>
             </thead>

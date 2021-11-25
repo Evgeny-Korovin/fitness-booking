@@ -1,7 +1,35 @@
 <?php
     require 'patterns/user_header.php';
     require 'components/connect_db.php';
+
     function printResult($result) {
+        $currentUserId = $_COOKIE['id'];
+
+
+
+
+
+        function get_ordered_class($classId, $currentUserId) {
+            require 'components/connect_db.php';
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ];
+            $pdoInner = new PDO($dsn, $user,$pass,$options);
+            $resultClassesUser = $pdoInner->query("SELECT * FROM classes_users WHERE class_id = '$classId' AND user_id = '$currentUserId'");
+            //$resultClassesUser = $pdoInner->execute(['classId' => $classId, 'userId' => $currentUserId]);
+            if ($row = $resultClassesUser->fetchAll()) {
+                return "<form action='components/unordertoclass.php' method='POST'>
+                                <button type='submit' class=\"btn btn-warning btn-sm userUpdateBtn\" >Отписаться</button>
+                                <input type='hidden' name='id' value="  . $classId .  ">
+                            </form>";
+            } else {
+                return "<form action='components/ordertoclass.php' method='POST'>
+                                <button type='submit' class=\"btn btn-info btn-sm userUpdateBtn\" >Записаться</button>
+                                <input type='hidden' name='id' value="  . $classId .  ">
+                            </form>";
+            }
+        }
         $i = 1;
         while ($row = $result->fetch()) {
             echo "<tr>
@@ -9,12 +37,8 @@
                         <td>" . $row['title'] . "</td>
                         <td>" . $row['name'] . " " . $row['surname'] . "</td>
                         <td>" . $row['datetime'] . "</td>
-                        <td>
-                            <form action='components/delete_planned_class.php' method='POST'>
-                                <button type='button' class=\"btn btn-info btn-sm userUpdateBtn\" id="  . $row['id'] .  ">Записаться</button>
-                                <input type='hidden' name='id' value="  . $row['id'] .  ">
-                            </form>
-                        </td>
+                        <td>" . get_ordered_class($row['id'], $currentUserId) .
+                        "</td>
                       </tr>";
             $i++;
         }
